@@ -97,6 +97,16 @@ def VulkanVersionToInt(int_value):
 
 def test():
     '''docstring goes here'''
+
+    include_path = None
+    if sys.platform.startswith('linux'):
+        include_path = '/home/mikew/repos/gits/github.com/KhronosGroup/Vulkan-Headers/include/'
+    elif sys.platform.startswith('win32'):
+        pass
+    elif sys.platform.startswith('darwin'):
+        pass
+    assert include_path, "unknown platform"
+
     ver = GetVulkanHeaderVersion('/home/mikew/repos/gits/github.com/KhronosGroup/Vulkan-Headers/'
                                  'include/vulkan/vulkan_core.h')
     print("tuple:", ver)
