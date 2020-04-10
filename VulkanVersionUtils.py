@@ -74,6 +74,24 @@ def GetVulkanHeaderVersion(filename):
 
     return result
 
+# conversions between several representations ###############################
+
+def VulkanVersionFromStr(str_value):
+    '''TODO : from '0x0000' or '1.2.3' to tuple'''
+    return (0,0,0)
+
+def VulkanVersionToDottedStr(ver):
+    '''TODO : from tuple to '1.2.3' str'''
+    return "%d.%d.%d" % ver
+
+def VulkanVersionFromHex(hex_value):
+    '''TODO : from 0x0000 to tuple'''
+    return (0,0,0)
+
+def VulkanVersionToHex(hex_value):
+    '''TODO : from tuple to 0x0000'''
+    return 0x12345678
+
 # testing ###################################################################
 
 def test():
@@ -97,7 +115,7 @@ def main():
     ver = GetVulkanHeaderVersion(sys.argv[1])
     if not ver:
         ver = (0,0,0)
-    print("%d.%d.%d" % ver)
+    print(VulkanVersionToDottedStr(ver))
 
 if __name__ == '__main__':
     main()
