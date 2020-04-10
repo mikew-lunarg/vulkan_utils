@@ -97,7 +97,8 @@ def VulkanVersionToInt(int_value):
 
 def test():
     '''docstring goes here'''
-    ver = GetVulkanHeaderVersion('/home/mikew/repos/gits/github.com/KhronosGroup/Vulkan-Headers/include/vulkan/vulkan_core.h')
+    ver = GetVulkanHeaderVersion('/home/mikew/repos/gits/github.com/KhronosGroup/Vulkan-Headers/'
+                                 'include/vulkan/vulkan_core.h')
     print("tuple:", ver)
     print("dotted: %d.%d.%d" % ver)
 
