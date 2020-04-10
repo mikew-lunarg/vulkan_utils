@@ -18,6 +18,7 @@
 """
 VulkanVersionUtils.py
 Utilities for manipulating Vulkan version data.
+A 3-tuple is the native Python representation of a Vulkan vers.
 """
 
 import re
@@ -77,19 +78,19 @@ def GetVulkanHeaderVersion(filename):
 # conversions between several representations ###############################
 
 def VulkanVersionFromStr(str_value):
-    '''TODO : from '0x0000' or '1.2.3' to tuple'''
+    '''TODO : from '1.2.3' dotted str to tuple'''
     return (0,0,0)
 
-def VulkanVersionToDottedStr(ver):
-    '''TODO : from tuple to '1.2.3' str'''
+def VulkanVersionToStr(ver):
+    '''from tuple to '1.2.3' dotted str'''
     return "%d.%d.%d" % ver
 
-def VulkanVersionFromHex(hex_value):
-    '''TODO : from 0x0000 to tuple'''
+def VulkanVersionFromInt(int_value):
+    '''TODO : from int32 to tuple'''
     return (0,0,0)
 
-def VulkanVersionToHex(hex_value):
-    '''TODO : from tuple to 0x0000'''
+def VulkanVersionToInt(int_value):
+    '''TODO : from tuple to int32'''
     return 0x12345678
 
 # testing ###################################################################
@@ -99,7 +100,7 @@ def test():
     print("tuple:", ver)
     print("dotted: %d.%d.%d" % ver)
 
-    ver = GetVulkanHeaderVersion('VulkanVersion.py')
+    ver = GetVulkanHeaderVersion(sys.argv[0])
     if not ver: ver = (0,0,0)
     print("tuple:", ver)
     print("dotted: %d.%d.%d" % ver)
@@ -115,7 +116,7 @@ def main():
     ver = GetVulkanHeaderVersion(sys.argv[1])
     if not ver:
         ver = (0,0,0)
-    print(VulkanVersionToDottedStr(ver))
+    print(VulkanVersionToStr(ver))
 
 if __name__ == '__main__':
     main()
