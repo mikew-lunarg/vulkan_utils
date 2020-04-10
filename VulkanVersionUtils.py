@@ -79,7 +79,7 @@ def GetVulkanHeaderVersion(filename):
 
 def VulkanVersionFromStr(str_value):
     '''TODO : from '1.2.3' dotted str to tuple'''
-    return (0,0,0)
+    return (0, 0, 0)
 
 def VulkanVersionToStr(ver):
     '''from tuple to '1.2.3' dotted str'''
@@ -87,7 +87,7 @@ def VulkanVersionToStr(ver):
 
 def VulkanVersionFromInt(int_value):
     '''TODO : from int32 to tuple'''
-    return (0,0,0)
+    return (0, 0, 0)
 
 def VulkanVersionToInt(int_value):
     '''TODO : from tuple to int32'''
@@ -96,12 +96,14 @@ def VulkanVersionToInt(int_value):
 # testing ###################################################################
 
 def test():
+    '''docstring goes here'''
     ver = GetVulkanHeaderVersion('/home/mikew/repos/gits/github.com/KhronosGroup/Vulkan-Headers/include/vulkan/vulkan_core.h')
     print("tuple:", ver)
     print("dotted: %d.%d.%d" % ver)
 
     ver = GetVulkanHeaderVersion(sys.argv[0])
-    if not ver: ver = (0,0,0)
+    if not ver:
+        ver = (0, 0, 0)
     print("tuple:", ver)
     print("dotted: %d.%d.%d" % ver)
 
@@ -112,10 +114,11 @@ def test():
 # main ######################################################################
 
 def main():
+    '''docstring goes here'''
     assert len(sys.argv) == 2, "usage: %s [filename]" % sys.argv[0]
     ver = GetVulkanHeaderVersion(sys.argv[1])
     if not ver:
-        ver = (0,0,0)
+        ver = (0, 0, 0)
     print(VulkanVersionToStr(ver))
 
 if __name__ == '__main__':
