@@ -86,15 +86,15 @@ def VulkanVersionFromStr(str_value):
     assert m
     return tuple(map(int, m.groups()))
 
-def VulkanVersionToStr(ver):
+def VulkanVersionToStr(tuple_value):
     '''from tuple to '1.2.3' dotted str'''
-    return "%d.%d.%d" % ver
+    return "%d.%d.%d" % tuple_value
 
 def VulkanVersionFromInt(int_value):
     '''TODO : from int32 to tuple'''
     return (0, 0, 0)
 
-def VulkanVersionToInt(int_value):
+def VulkanVersionToInt(tuple_value):
     '''TODO : from tuple to int32'''
     return 0x12345678
 
