@@ -24,6 +24,7 @@ A 3-tuple is the native Python representation of a Vulkan vers.
 import re
 import sys
 import os
+assert sys.version_info > (3,0)
 
 #############################################################################
 
