@@ -134,6 +134,8 @@ def test():
     print("tuple:", ver)
     print("dotted: ", VulkanVersionToStr(ver))
 
+    input('\nHit enter to continue ')  # Windows: keep the script window open
+
 # main ######################################################################
 
 def main():
