@@ -23,6 +23,7 @@ A 3-tuple is the native Python representation of a Vulkan vers.
 
 import re
 import sys
+import os
 
 #############################################################################
 
@@ -32,6 +33,7 @@ def GetVulkanHeaderVersion(filename):
     Returns the version as a 3-tuple, or None if the header does not contain necessary info.
     Will assert if the file's version data is not formatted as expected.
     '''
+    print("GetVulkanHeaderVersion", filename)
     with open(filename) as file:
         regex1 = re.compile(r'\bVK_HEADER_VERSION\s+(\d+)')
         regex2 = re.compile(r'\bVK_HEADER_VERSION_COMPLETE\s+VK_MAKE_VERSION\((\d+),\s*(\d+),\s*(\w+)\)')
@@ -100,15 +102,15 @@ def test():
 
     include_path = None
     if sys.platform.startswith('linux'):
-        include_path = '/home/mikew/repos/gits/github.com/KhronosGroup/Vulkan-Headers/include/'
+        include_path = '/home/mikew/repos/gits/github.com/KhronosGroup/Vulkan-Headers/include'
     elif sys.platform.startswith('win32'):
-        pass
+        include_path = 'c:\\VulkanSDK\\1.2.135.0\\Include'
     elif sys.platform.startswith('darwin'):
         pass
     assert include_path, "unknown platform"
 
-    ver = GetVulkanHeaderVersion('/home/mikew/repos/gits/github.com/KhronosGroup/Vulkan-Headers/'
-                                 'include/vulkan/vulkan_core.h')
+    filename = os.path.realpath(os.path.join(include_path, 'vulkan/vulkan_core.h'))
+    ver = GetVulkanHeaderVersion(filename)
     print("tuple:", ver)
     print("dotted: %d.%d.%d" % ver)
 
