@@ -34,7 +34,6 @@ def GetVulkanHeaderVersion(filename):
     Returns the version as a 3-tuple, or None if the header does not contain necessary info.
     Will assert if the file's version data is not formatted as expected.
     '''
-    print("GetVulkanHeaderVersion", filename)
     with open(filename) as file:
         regex1 = re.compile(r'\bVK_HEADER_VERSION\s+(\d+)')
         regex2 = re.compile(r'\bVK_HEADER_VERSION_COMPLETE\s+VK_MAKE_VERSION\((\d+),\s*(\d+),\s*(\w+)\)')
@@ -101,8 +100,19 @@ def VulkanVersionToInt(tuple_value):
 
 # testing ###################################################################
 
+def test_file(filename):
+    print("\nGetVulkanHeaderVersion", filename)
+    ver = GetVulkanHeaderVersion(filename)
+    if not ver:
+        ver = (0, 0, 0)
+    print("tuple:", ver)
+    print("dotted: ", VulkanVersionToStr(ver))
+
+
 def test():
     '''docstring goes here'''
+
+    print("Python %s" % sys.version)
 
     include_path = None
     if sys.platform.startswith('linux'):
@@ -113,26 +123,12 @@ def test():
         pass
     assert include_path, "unknown platform"
 
-    filename = os.path.realpath(os.path.join(include_path, 'vulkan/vulkan_core.h'))
-    ver = GetVulkanHeaderVersion(filename)
-    print("tuple:", ver)
-    print("dotted: ", VulkanVersionToStr(ver))
-
-    ver = GetVulkanHeaderVersion(sys.argv[0])
-    if not ver:
-        ver = (0, 0, 0)
-    print("tuple:", ver)
-    print("dotted: ", VulkanVersionToStr(ver))
-
-    ver = (9, 9, 9)
+    test_file(os.path.realpath(os.path.join(include_path, 'vulkan/vulkan_core.h')))
+    test_file(sys.argv[0])
     try:
-        ver = GetVulkanHeaderVersion('non-exist.txt')
+        test_file('non-exist.txt')
     except FileNotFoundError:
-        pass
-    if not ver:
-        ver = (0, 0, 0)
-    print("tuple:", ver)
-    print("dotted: ", VulkanVersionToStr(ver))
+        print('(no result is correct)')
 
     input('\nHit enter to continue ')  # Windows: keep the script window open
 
