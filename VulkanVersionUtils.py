@@ -54,15 +54,16 @@ def GetVulkanHeaderVersion(filename):
                 if m:
                     assert not version_complete
                     assert m.group(3) == 'VK_HEADER_VERSION'
-                    version_complete = (int(m.group(1)), int(m.group(2)))
+                    version_complete = tuple(map(int, m.group(1,2)))
                     continue
 
                 m = regex3.search(line)
                 if m:
-                    assert m.group(3) == m.group(1)
-                    assert m.group(4) == m.group(2)
-                    assert m.group(5) == '0'
-                    x = (int(m.group(3)), int(m.group(4)))
+                    x = tuple(map(int, m.groups()))
+                    assert x[2] == x[0]
+                    assert x[3] == x[1]
+                    assert x[4] == 0
+                    x = x[2:4]
                     if not api_version or x > api_version:
                         api_version = x
                     continue
