@@ -81,8 +81,10 @@ def GetVulkanHeaderVersion(filename):
 # conversions between several representations ###############################
 
 def VulkanVersionFromStr(str_value):
-    '''TODO : from '1.2.3' dotted str to tuple'''
-    return (0, 0, 0)
+    '''from '1.2.3' dotted str to tuple'''
+    m = re.match(r'(\d+)\.(\d+)\.(\d+)', str_value)
+    assert m
+    return tuple(map(int, m.groups()))
 
 def VulkanVersionToStr(ver):
     '''from tuple to '1.2.3' dotted str'''
