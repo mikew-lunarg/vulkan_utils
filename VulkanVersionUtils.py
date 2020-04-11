@@ -115,13 +115,13 @@ def test():
     filename = os.path.realpath(os.path.join(include_path, 'vulkan/vulkan_core.h'))
     ver = GetVulkanHeaderVersion(filename)
     print("tuple:", ver)
-    print("dotted: %d.%d.%d" % ver)
+    print("dotted: ", VulkanVersionToStr(ver))
 
     ver = GetVulkanHeaderVersion(sys.argv[0])
     if not ver:
         ver = (0, 0, 0)
     print("tuple:", ver)
-    print("dotted: %d.%d.%d" % ver)
+    print("dotted: ", VulkanVersionToStr(ver))
 
     ver = (9, 9, 9)
     try:
@@ -131,7 +131,7 @@ def test():
     if not ver:
         ver = (0, 0, 0)
     print("tuple:", ver)
-    print("dotted: %d.%d.%d" % ver)
+    print("dotted: ", VulkanVersionToStr(ver))
 
 # main ######################################################################
 
