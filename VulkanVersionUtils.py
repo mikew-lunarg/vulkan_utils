@@ -123,7 +123,13 @@ def test():
     print("tuple:", ver)
     print("dotted: %d.%d.%d" % ver)
 
-    ver = GetVulkanHeaderVersion('non-exist.txt')
+    ver = (9, 9, 9)
+    try:
+        ver = GetVulkanHeaderVersion('non-exist.txt')
+    except FileNotFoundError:
+        pass
+    if not ver:
+        ver = (0, 0, 0)
     print("tuple:", ver)
     print("dotted: %d.%d.%d" % ver)
 
