@@ -24,7 +24,7 @@ A 3-tuple is the native Python representation of a Vulkan vers.
 import re
 import sys
 import os
-assert sys.version_info > (3,0)
+assert sys.version_info > (3, 0)
 
 #############################################################################
 
@@ -55,7 +55,7 @@ def GetVulkanHeaderVersion(filename):
                 if m:
                     assert not version_complete
                     assert m.group(3) == 'VK_HEADER_VERSION'
-                    version_complete = tuple(map(int, m.group(1,2)))
+                    version_complete = tuple(map(int, m.group(1, 2)))
                     continue
 
                 m = regex3.search(line)
